@@ -2,11 +2,31 @@ import { Box, Divider, Paper, Typography } from "@mui/material";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 import dashboardImage from "../assests/dashboard.jpg";
+import QRTable from "./QRTable";
 
 const Profile = () => {
   const { data, error, isLoading } = useSelector(
     (state: RootState) => state.dashboard
   );
+
+  const {
+    isLoading: urlLoading,
+    error: urlError,
+    data: urlData,
+  } = useSelector((state: RootState) => state.url);
+
+  const {
+    isLoading: smsLoading,
+    error: smsError,
+    data: smsData,
+  } = useSelector((state: RootState) => state.sms);
+
+  const {
+    isLoading: emailLoading,
+    error: emailError,
+    data: emailData,
+  } = useSelector((state: RootState) => state.email);
+
   if (isLoading) {
     return (
       <div className=" bg-[#f5f5f5] p-2 min-h-[100vh] text-center py-8">
@@ -75,6 +95,7 @@ const Profile = () => {
                 fontWeight: "bold",
                 color: "#388e3c",
               }}
+              fontFamily={"cursive"}
             >
               User Profile
             </Typography>
@@ -91,6 +112,7 @@ const Profile = () => {
                 <Typography
                   variant="subtitle2"
                   sx={{ color: "text.primary", fontWeight: "bold" }}
+                  fontFamily={"cursive"}
                 >
                   Full Name
                 </Typography>
@@ -109,6 +131,7 @@ const Profile = () => {
                 <Typography
                   variant="subtitle2"
                   sx={{ color: "text.primary", fontWeight: "bold" }}
+                  fontFamily={"cursive"}
                 >
                   Username
                 </Typography>
@@ -127,6 +150,7 @@ const Profile = () => {
                 <Typography
                   variant="subtitle2"
                   sx={{ color: "text.primary", fontWeight: "bold" }}
+                  fontFamily={"cursive"}
                 >
                   Email
                 </Typography>
@@ -145,6 +169,7 @@ const Profile = () => {
                 <Typography
                   variant="subtitle2"
                   sx={{ color: "text.primary", fontWeight: "bold" }}
+                  fontFamily={"cursive"}
                 >
                   Total Scans
                 </Typography>
@@ -155,6 +180,34 @@ const Profile = () => {
             </Box>
           </Paper>
         </Box>
+
+        <QRTable
+          title="Recent QR Codes"
+          data={data?.qrs}
+          error={error}
+          loading={isLoading}
+        />
+        <QRTable
+          title="URL QR Codes"
+          data={urlData?.qrs}
+          viewMore
+          error={urlError}
+          loading={urlLoading}
+        />
+        <QRTable
+          title="SMS QR Codes"
+          data={smsData?.qrs}
+          viewMore
+          error={smsError}
+          loading={smsLoading}
+        />
+        <QRTable
+          title="Email QR Codes"
+          data={emailData?.qrs}
+          viewMore
+          error={emailError}
+          loading={emailLoading}
+        />
       </div>
     </div>
   );

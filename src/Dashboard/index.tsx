@@ -1,9 +1,12 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { dashboardThunk } from "../redux/features/dashboard/dashboardThunk";
 import { RootState, useAppDispatch } from "../redux/store";
 import { useSelector } from "react-redux";
 import { checkAuth } from "../utils/checkAuth";
 import Profile from "./Profile";
+import { urlThunk } from "../redux/features/url/urlThunk";
+import { smsThunk } from "../redux/features/sms/smsThunk";
+import { emailThunk } from "../redux/features/email/emailThunk";
 
 const Dashboard = () => {
   const dispatch = useAppDispatch();
@@ -23,6 +26,9 @@ const Dashboard = () => {
 
   useEffect(() => {
     dispatch(dashboardThunk());
+    dispatch(urlThunk(0));
+    dispatch(smsThunk(0));
+    dispatch(emailThunk(0));
   }, [dispatch]);
 
   if (isLoading) {
