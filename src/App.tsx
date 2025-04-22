@@ -18,6 +18,8 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/qr-codes/:qr_type" element={<Dashboard />} />
+          <Route path="/qr/:qr_id" element={<Home />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
         <Footer />
