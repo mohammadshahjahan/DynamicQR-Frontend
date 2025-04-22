@@ -36,7 +36,7 @@ export const dashboardSlice = createSlice({
 
 // Export selectors
 export const selectDashboardData = (state:dashboardState) => state.data;
-export const selectDashbboardLoading = (state:dashboardState) => state.isLoading;
+export const selectDashboardLoading = (state:dashboardState) => state.isLoading;
 export const selectDashboardError = (state:dashboardState) => state.error;
 
 // Export the reducer
