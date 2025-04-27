@@ -83,7 +83,7 @@ const SignUp = () => {
 
       try {
         const response = await axios.post(
-          "http://localhost:8000/users/signup",
+          "https://dynamicqr-4dwm.onrender.com/users/signup",
           {
             username,
             password,

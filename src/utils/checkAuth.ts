@@ -8,7 +8,7 @@ export async function checkAuth() {
       }
     
       try {
-        const response = await axios.get("http://localhost:8000/auth/check", {
+        const response = await axios.get("https://dynamicqr-4dwm.onrender.com/auth/check", {
           headers: {
             Authorization: token,
           },

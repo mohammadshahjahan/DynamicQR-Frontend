@@ -59,7 +59,7 @@ const Login = () => {
       setIsLoading(true);
 
       try {
-        const response = await axios.post("http://localhost:8000/users/login", {
+        const response = await axios.post("https://dynamicqr-4dwm.onrender.com/users/login", {
           username,
           password,
         });

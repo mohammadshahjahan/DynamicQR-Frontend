@@ -9,7 +9,7 @@ export const dashboardThunk = createAsyncThunk("dashboard/fetchdata", async ()=>
         return null;
     }
     try{
-        const response = await axios.get("http://localhost:8000/user/profile",{
+        const response = await axios.get("https://dynamicqr-4dwm.onrender.com/user/profile",{
             headers:{
                 Authorization: token,
             },

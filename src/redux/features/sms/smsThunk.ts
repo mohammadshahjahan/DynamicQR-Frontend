@@ -9,7 +9,7 @@ export const smsThunk = createAsyncThunk("sms/fetchdata", async (offset:number)=
         return null;
     }
     try{
-        const response = await axios.get(`http://localhost:8000/user/qr?type=sms&offset=${offset}`,{
+        const response = await axios.get(`https://dynamicqr-4dwm.onrender.com/user/qr?type=sms&offset=${offset}`,{
             headers:{
                 Authorization: token,
             },
