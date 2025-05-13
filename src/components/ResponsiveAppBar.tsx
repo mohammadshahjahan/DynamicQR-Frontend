@@ -17,7 +17,8 @@ import { checkAuth } from "../utils/checkAuth";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import profileImage from "../assests/profile.jpg";
 
-const pages = ["Dashboard"];
+const pages = ["Dashboard", "Create QR"];
+const qrs = ["URL", "SMS", "Email"];
 
 function ResponsiveAppBar() {
   const navigate = useNavigate();
@@ -28,6 +29,7 @@ function ResponsiveAppBar() {
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
     null
   );
+  const [anchorElQR, setAnchorElQR] = React.useState<null | HTMLElement>(null);
 
   React.useEffect(() => {
     const onMountingNavbAr = async () => {
@@ -53,6 +55,19 @@ function ResponsiveAppBar() {
     setAnchorElUser(null);
   };
 
+  const handleOpenQRMenu = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorElQR(event.currentTarget);
+  };
+
+  const handleCloseQRMenu = () => {
+    setAnchorElQR(null);
+  };
+
+  const handleQRClick = (type: string) => {
+    handleCloseQRMenu();
+    navigate(`/create-qr/${type.toLowerCase()}`);
+  };
+
   const handleAuthAction = (action: string) => {
     handleCloseUserMenu();
     if (action === "Logout") {
@@ -64,10 +79,12 @@ function ResponsiveAppBar() {
     }
   };
 
-  const handleDashboardClick = () => {
+  const handleDashboardClick = (tab: string) => {
     if (!isLoggedIn) {
       navigate("/login");
-    } else {
+      return;
+    }
+    if (tab === "Dashboard") {
       navigate("/dashboard");
     }
   };
@@ -82,12 +99,20 @@ function ResponsiveAppBar() {
     >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <QrCodeIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
+          {/* Desktop Logo */}
+          <QrCodeIcon
+            sx={{
+              display: { xs: "none", md: "flex" },
+              mr: 1,
+              cursor: "pointer",
+            }}
+            onClick={() => navigate("/")}
+          />
           <Typography
             variant="h6"
             noWrap
             component="a"
-            href="/"
+            onClick={() => navigate("/")}
             sx={{
               mr: 2,
               display: { xs: "none", md: "flex" },
@@ -95,46 +120,48 @@ function ResponsiveAppBar() {
               fontWeight: 700,
               color: "inherit",
               textDecoration: "none",
+              cursor: "pointer",
             }}
           >
             HoloQR
           </Typography>
 
+          {/* Mobile Menu Icon */}
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
+              aria-label="menu"
               onClick={handleOpenNavMenu}
               color="inherit"
             >
               <MenuIcon />
             </IconButton>
             <Menu
-              id="menu-appbar"
               anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: "bottom",
-                horizontal: "left",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "left",
-              }}
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
+              anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
+              transformOrigin={{ vertical: "top", horizontal: "left" }}
               sx={{ display: { xs: "block", md: "none" } }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleDashboardClick}>
+                <MenuItem
+                  key={page}
+                  onClick={(e) => {
+                    if (page === "Create QR") {
+                      handleOpenQRMenu(e);
+                    } else {
+                      handleDashboardClick(page);
+                    }
+                  }}
+                >
                   <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}
             </Menu>
           </Box>
 
+          {/* Mobile Logo */}
           <QrCodeIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
           <Typography
             variant="h5"
@@ -154,11 +181,18 @@ function ResponsiveAppBar() {
             HoloQR
           </Typography>
 
+          {/* Desktop Menu Items */}
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
               <Button
                 key={page}
-                onClick={handleDashboardClick}
+                onClick={(e) => {
+                  if (page === "Create QR") {
+                    handleOpenQRMenu(e);
+                  } else {
+                    handleDashboardClick(page);
+                  }
+                }}
                 sx={{ my: 2, color: "white", display: "block" }}
               >
                 {page}
@@ -166,6 +200,7 @@ function ResponsiveAppBar() {
             ))}
           </Box>
 
+          {/* User Avatar or Login/Signup */}
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title={isLoggedIn ? "Open settings" : "Account options"}>
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -187,45 +222,50 @@ function ResponsiveAppBar() {
             </Tooltip>
             <Menu
               sx={{ mt: "45px" }}
-              id="menu-appbar"
               anchorEl={anchorElUser}
+              open={Boolean(anchorElUser)}
+              onClose={handleCloseUserMenu}
               anchorOrigin={{
                 vertical: "top",
                 horizontal: "right",
               }}
-              keepMounted
               transformOrigin={{
                 vertical: "top",
                 horizontal: "right",
               }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
             >
               {isLoggedIn ? (
-                <MenuItem
-                  key="Logout"
-                  onClick={() => handleAuthAction("Logout")}
-                >
+                <MenuItem onClick={() => handleAuthAction("Logout")}>
                   <Typography textAlign="center">Logout</Typography>
                 </MenuItem>
               ) : (
-                [
-                  <MenuItem
-                    key="Login"
-                    onClick={() => handleAuthAction("Login")}
-                  >
+                <>
+                  <MenuItem onClick={() => handleAuthAction("Login")}>
                     <Typography textAlign="center">Login</Typography>
-                  </MenuItem>,
-                  <MenuItem
-                    key="Signup"
-                    onClick={() => handleAuthAction("Signup")}
-                  >
+                  </MenuItem>
+                  <MenuItem onClick={() => handleAuthAction("Signup")}>
                     <Typography textAlign="center">Signup</Typography>
-                  </MenuItem>,
-                ]
+                  </MenuItem>
+                </>
               )}
             </Menu>
           </Box>
+
+          {/* QR Type Submenu */}
+          <Menu
+            id="qr-menu"
+            anchorEl={anchorElQR}
+            open={Boolean(anchorElQR)}
+            onClose={handleCloseQRMenu}
+            anchorOrigin={{ vertical: "top", horizontal: "right" }}
+            transformOrigin={{ vertical: "top", horizontal: "left" }}
+          >
+            {qrs.map((type) => (
+              <MenuItem key={type} onClick={() => handleQRClick(type)}>
+                <Typography textAlign="center">{type}</Typography>
+              </MenuItem>
+            ))}
+          </Menu>
         </Toolbar>
       </Container>
     </AppBar>
