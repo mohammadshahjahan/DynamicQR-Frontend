@@ -10,6 +10,8 @@ import Dashboard from "./Dashboard";
 import URL from "./components/CreateQR/URL";
 import SMS from "./components/CreateQR/SMS";
 import EMAIL from "./components/CreateQR/EMAIL";
+import QrCodes from "./QrCodes";
+import QR from "./QrCodes/QR";
 
 function App() {
   return (
@@ -21,8 +23,8 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/qr-codes/:qr_type" element={<Dashboard />} />
-          <Route path="/qr/:qr_id" element={<Home />} />
+          <Route path="/qr-codes/:qr_type" element={<QrCodes />} />
+          <Route path="/qr/:qr_id" element={<QR />} />
           <Route path="/create-qr/url" element={<URL />} />
           <Route path="/create-qr/sms" element={<SMS />} />
           <Route path="/create-qr/email" element={<EMAIL />} />

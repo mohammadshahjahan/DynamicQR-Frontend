@@ -2,7 +2,7 @@ import { Box, Divider, Paper, Typography } from "@mui/material";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 import dashboardImage from "../assests/dashboard.jpg";
-import QRTable from "./QRTable";
+import QRTable from "../components/QRTable";
 
 const Profile = () => {
   const { data, error, isLoading } = useSelector(

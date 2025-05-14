@@ -3,6 +3,7 @@ import dashboardReducer from "./features/dashboard/dashboardSlice"
 import urlReducer from "./features/url/urlSlice"
 import smsReducer from "./features/sms/smsSlice"
 import emailReducer from "./features/email/emailSlice"
+import qrReducer from "./features/qr/qrSlice"
 import { useDispatch } from 'react-redux'
 
 export const store = configureStore({
@@ -11,6 +12,7 @@ export const store = configureStore({
     url:urlReducer,
     sms:smsReducer,
     email:emailReducer,
+    qr:qrReducer,
   },
 })
 
