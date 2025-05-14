@@ -7,6 +7,8 @@ import Login from "./User/Login";
 import SignUp from "./User/SignUp";
 import NotFoundPage from "./components/NotFoundPage";
 import Dashboard from "./Dashboard";
+import QrCodes from "./QrCodes";
+import QR from "./QrCodes/QR";
 
 function App() {
   return (
@@ -18,8 +20,8 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/qr-codes/:qr_type" element={<Dashboard />} />
-          <Route path="/qr/:qr_id" element={<Home />} />
+          <Route path="/qr-codes/:qr_type" element={<QrCodes />} />
+          <Route path="/qr/:qr_id" element={<QR />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
         <Footer />

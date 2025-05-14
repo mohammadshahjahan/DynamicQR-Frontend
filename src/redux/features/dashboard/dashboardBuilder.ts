@@ -10,6 +10,7 @@ export const dashboardBuilder = (builder:ActionReducerMapBuilder<dashboardState>
     })
     .addCase(dashboardThunk.fulfilled,(state,action) => {
         state.isLoading = false;
+    
         state.data = action.payload;
         state.error = null;
     })

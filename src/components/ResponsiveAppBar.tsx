@@ -82,12 +82,15 @@ function ResponsiveAppBar() {
     >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <QrCodeIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
+          <QrCodeIcon
+            sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
+            onClick={() => navigate("/")}
+          />
           <Typography
             variant="h6"
             noWrap
             component="a"
-            href="/"
+            onClick={() => navigate("/")}
             sx={{
               mr: 2,
               display: { xs: "none", md: "flex" },
