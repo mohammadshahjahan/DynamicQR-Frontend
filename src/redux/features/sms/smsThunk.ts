@@ -34,7 +34,7 @@ export const smsPaginatedThunk = createAsyncThunk("paginatedSMS/fetchdata", asyn
     }
     try{
         const offset = (pageNumber - 1) * 10; 
-        const response = await axios.get(`http://localhost:8000/user/qr?type=sms&offset=${offset}`,{
+        const response = await axios.get(`https://dynamicqr-4dwm.onrender.com/user/qr?type=sms&offset=${offset}`,{
             headers:{
                 Authorization: token,
             },

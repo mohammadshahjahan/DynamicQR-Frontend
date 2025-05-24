@@ -33,7 +33,7 @@ export const urlPaginatedThunk = createAsyncThunk("paginatedURL/fetchdata", asyn
     }
     try{
         const offset = (pageNumber - 1) * 10; 
-        const response = await axios.get(`http://localhost:8000/user/qr?type=url&offset=${offset}`,{
+        const response = await axios.get(`https://dynamicqr-4dwm.onrender.com/user/qr?type=url&offset=${offset}`,{
             headers:{
                 Authorization: token,
             },

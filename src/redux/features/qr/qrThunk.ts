@@ -15,7 +15,7 @@ export const qrThunk = createAsyncThunk("qr/fetchdata", async ({pageNumber ,qrID
     }
     try{
         const offset = (pageNumber - 1) * 10; 
-        const response = await axios.get(`http://localhost:8000/qr?qrID=${qrID}&offset=${offset}`,{
+        const response = await axios.get(`https://dynamicqr-4dwm.onrender.com/qr?qrID=${qrID}&offset=${offset}`,{
             headers:{
                 Authorization: token,
             },
