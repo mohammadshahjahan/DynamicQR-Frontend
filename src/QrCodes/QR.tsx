@@ -45,7 +45,7 @@ const ResponsiveGridItem = ({
   </Grid>
 );
 
-const QRDetailsCard = ({ details }: { details: any }) => {
+const QRDetailsCard = ({ details, qrID }: { details: any; qrID: number }) => {
   const [open, setOpen] = useState(false);
   return (
     <Card
@@ -187,7 +187,7 @@ const QRDetailsCard = ({ details }: { details: any }) => {
         <Button variant="outlined" onClick={() => setOpen(true)}>
           Edit
         </Button>
-        <Divider sx={{ mb: 2,mt:2, borderColor: "#e0e0e0" }} />
+        <Divider sx={{ mb: 2, mt: 2, borderColor: "#e0e0e0" }} />
         <Box sx={{ mb: 4 }}>
           <Typography
             variant="subtitle1"
@@ -205,9 +205,9 @@ const QRDetailsCard = ({ details }: { details: any }) => {
             </svg>
             Download QR Code
           </Typography>
-          <DownloadableQR qrID={details.id} />
+          <DownloadableQR qrID={qrID} />
         </Box>
-        <EditQR details={details} open={open} setOpen={setOpen} />
+        <EditQR details={details} qrID={qrID} open={open} setOpen={setOpen} />
       </CardContent>
     </Card>
   );
@@ -334,8 +334,6 @@ const QR = () => {
         </Typography>
       </Box>
 
-  
-
       {error && (
         <Alert
           severity="error"
@@ -349,7 +347,9 @@ const QR = () => {
         </Alert>
       )}
 
-      {data.details && <QRDetailsCard details={data.details} />}
+      {data.details && (
+        <QRDetailsCard details={data.details} qrID={qrIdNumber} />
+      )}
 
       {!isLoading && data.history && data.history.length > 0 ? (
         <>
