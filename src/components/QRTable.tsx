@@ -12,6 +12,7 @@ import {
   Box,
 } from "@mui/material";
 import { formatDateIndian } from "../utils/dateformatter";
+import { useNavigate } from "react-router-dom";
 
 interface QRTableProps {
   viewMore?: boolean;
@@ -28,6 +29,8 @@ const QRTable: React.FC<QRTableProps> = ({
   loading,
   error,
 }) => {
+  const navigate = useNavigate();
+
   if (loading) {
     return (
       <Paper
@@ -183,7 +186,8 @@ const QRTable: React.FC<QRTableProps> = ({
                 },
               }}
               onClick={() => {
-                window.location.href = `/qr/${row?.qr_id}`;
+                // window.location.href = `/qr/${row?.qr_id}`;
+                navigate(`/qr/${row?.qr_id}`);
               }}
             >
               <TableCell>{row?.name}</TableCell>
@@ -201,7 +205,8 @@ const QRTable: React.FC<QRTableProps> = ({
           variant="body2"
           sx={{ p: 2, textAlign: "right" }}
           onClick={() => {
-            window.location.href = `/qr-codes/${data[0]?.qr_type}`;
+            // window.location.href = `/qr-codes/${data[0]?.qr_type}`;
+            navigate(`/qr-codes/${data[0]?.qr_type}`);
           }}
           className="cursor-pointer"
         >

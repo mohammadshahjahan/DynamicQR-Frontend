@@ -4,26 +4,30 @@ import FeatureCard from "../components/FeatureCard";
 import EmailIcon from "@mui/icons-material/Email";
 import TextsmsIcon from "@mui/icons-material/Textsms";
 import LinkIcon from "@mui/icons-material/Link";
+import {
+  heroStyles,
+  featuresStyles,
+  ctaStyles,
+  howItWorksStyles,
+} from "../styles/homeStyles";
+import { navigateTo } from "../utils/navigation";
 
-const Home = () => {
+const Home: React.FC = () => {
   return (
     <div className="bg-white min-h-screen">
       {/* Hero Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+      <section className={heroStyles.section}>
         <div className="text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+          <h1 className={heroStyles.heading}>
             <span className="text-emerald-500">Dynamic QR Codes</span> Made
             Simple
           </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className={heroStyles.paragraph}>
             Create smart QR codes for emails, SMS, and URLs that you can update
             anytime - no need to reprint or redistribute!
           </p>
           <div className="mt-10">
-            <a
-              href="#features"
-              className="px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-emerald-500 hover:bg-emerald-600 md:py-4 md:text-lg md:px-10 transition-colors duration-200"
-            >
+            <a href="#features" className={heroStyles.ctaButton}>
               Get Started Free
             </a>
           </div>
@@ -31,15 +35,14 @@ const Home = () => {
       </section>
 
       {/* Features Section */}
-      <section id="features" className="bg-gray-50 py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section id="features" className={featuresStyles.section}>
+        <div className={featuresStyles.container}>
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-gray-900">
+            <h2 className={featuresStyles.heading}>
               Create Dynamic QR Codes For
             </h2>
           </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className={featuresStyles.grid}>
             <FeatureCard
               icon={EmailIcon}
               title="Email"
@@ -60,18 +63,15 @@ const Home = () => {
       </section>
 
       {/* How It Works */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+      <section className={howItWorksStyles.section}>
         <div className="text-center">
-          <h2 className="text-3xl font-bold text-gray-900 mb-2">
-            How HoloQR Works
-          </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <h2 className={howItWorksStyles.heading}>How HoloQR Works</h2>
+          <p className={howItWorksStyles.subheading}>
             Three simple steps to create your dynamic QR codes
           </p>
         </div>
-
         <div className="mt-16">
-          <div className="space-y-10 lg:space-y-0 lg:grid lg:grid-cols-3 lg:gap-x-8 lg:gap-y-10">
+          <div className={howItWorksStyles.stepsContainer}>
             <Step
               number={1}
               title="Choose Content Type"
@@ -92,24 +92,20 @@ const Home = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-emerald-500">
-        <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 lg:flex lg:items-center lg:justify-between">
-          <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+      <section className={ctaStyles.section}>
+        <div className={ctaStyles.container}>
+          <h2 className={ctaStyles.heading}>
             <span className="block">
               Ready to create your first dynamic QR?
             </span>
-            <span className="block text-emerald-100">Start free today.</span>
+            <span className={ctaStyles.subheading}>Start free today.</span>
           </h2>
           <div
-            className="mt-8 flex lg:mt-0 lg:flex-shrink-0"
-            onClick={() => {
-              window.location.href = "/signup";
-            }}
+            className={ctaStyles.buttonContainer}
+            onClick={() => navigateTo("/signup")}
           >
             <div className="inline-flex rounded-md shadow">
-              <div className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-emerald-600 bg-white hover:bg-emerald-50 transition-colors duration-200">
-                Sign Up Free
-              </div>
+              <div className={ctaStyles.button}>Sign Up Free</div>
             </div>
           </div>
         </div>

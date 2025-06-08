@@ -1,4 +1,5 @@
 import axios from "axios";
+import { API_BASE_URL } from "../constants/api";
 
 export async function checkAuth() {
     const token = localStorage.getItem('token');
@@ -8,7 +9,7 @@ export async function checkAuth() {
       }
     
       try {
-        const response = await axios.get("https://dynamicqr-4dwm.onrender.com/auth/check", {
+        const response = await axios.get(`${API_BASE_URL}/auth/check`, {
           headers: {
             Authorization: token,
           },

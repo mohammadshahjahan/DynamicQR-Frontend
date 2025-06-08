@@ -14,6 +14,12 @@ const Dashboard = () => {
     (state: RootState) => state.dashboard
   );
 
+  const { data: smsData } = useSelector((state: RootState) => state.sms);
+
+  const { data: urlData } = useSelector((state: RootState) => state.url);
+
+  const { data: emailData } = useSelector((state: RootState) => state.email);
+
   useEffect(() => {
     async function authCheck() {
       const auth = await checkAuth();
@@ -25,11 +31,22 @@ const Dashboard = () => {
   }, []);
 
   useEffect(() => {
-    dispatch(dashboardThunk());
-    dispatch(urlThunk(0));
-    dispatch(smsThunk(0));
-    dispatch(emailThunk(0));
-  }, [dispatch]);
+    if (data === null) {
+      dispatch(dashboardThunk());
+    }
+
+    if (smsData === null) {
+      dispatch(smsThunk(0));
+    }
+
+    if (urlData === null) {
+      dispatch(urlThunk(0));
+    }
+
+    if (emailData === null) {
+      dispatch(emailThunk(0));
+    }
+  }, [dispatch, data, smsData, urlData, emailData]);
 
   if (isLoading) {
     return <div className="text-center py-8">Loading dashboard data...</div>;
