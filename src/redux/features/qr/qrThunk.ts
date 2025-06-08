@@ -1,11 +1,12 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { API_BASE_URL } from "../../../constants/api";
 
 interface QrThunkArgs {
     pageNumber: number;
     qrID: number;
-  }
+}
 
 export const qrThunk = createAsyncThunk("qr/fetchdata", async ({pageNumber ,qrID} : QrThunkArgs) => {
     const token = localStorage.getItem("token");
@@ -15,7 +16,7 @@ export const qrThunk = createAsyncThunk("qr/fetchdata", async ({pageNumber ,qrID
     }
     try{
         const offset = (pageNumber - 1) * 10; 
-        const response = await axios.get(`https://dynamicqr-4dwm.onrender.com/qr?qrID=${qrID}&offset=${offset}`,{
+        const response = await axios.get(`${API_BASE_URL}/qr?qrID=${qrID}&offset=${offset}`,{
             headers:{
                 Authorization: token,
             },

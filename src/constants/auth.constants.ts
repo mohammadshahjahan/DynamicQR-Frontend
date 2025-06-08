@@ -1,7 +1,9 @@
+import { API_BASE_URL } from "./api";
+
 export const AUTH_CONSTANTS = {
   API_ENDPOINTS: {
-    LOGIN: "https://dynamicqr-4dwm.onrender.com/users/login",
-    SIGNUP: "https://dynamicqr-4dwm.onrender.com/users/signup",
+    LOGIN: `${API_BASE_URL}/users/login`,
+    SIGNUP: `${API_BASE_URL}/users/signup`,
   },
   ROUTES: {
     DASHBOARD: "/dashboard",

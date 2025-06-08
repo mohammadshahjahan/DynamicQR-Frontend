@@ -2,6 +2,8 @@ import { LoginErrors,SignUpErrors } from "../types/auth.types";
 import axios from "axios";
 import { LoginCredentials, SignUpCredentials, AuthResponse } from "../types/auth.types";
 import { AUTH_CONSTANTS } from "../constants/auth.constants";
+import { checkAuth } from "./checkAuth";
+import { navigateTo } from "./navigation";
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/;
 
@@ -82,7 +84,7 @@ export const storeAuthToken = (token: string): void => {
 
 export const redirectToDashboard = (): void => {
   setTimeout(() => {
-    window.location.href = AUTH_CONSTANTS.ROUTES.DASHBOARD;
+    navigateTo(AUTH_CONSTANTS.ROUTES.DASHBOARD);
   }, AUTH_CONSTANTS.REDIRECT_DELAY);
 };
 
@@ -90,4 +92,20 @@ export const handleAuthError = (error: any): string => {
   return error.response?.data?.message || 
          error.response?.data || 
          "Network error or server not reachable";
+};
+
+
+export const checkAuthAndRedirect = async (): Promise<boolean> => {
+  try {
+    const auth = await checkAuth();
+    if (!auth) {
+      navigateTo(AUTH_CONSTANTS.ROUTES.LOGIN)
+      return false;
+    }
+    return true;
+  } catch (error) {
+    console.error("Auth check failed:", error);
+    navigateTo(AUTH_CONSTANTS.ROUTES.LOGIN)
+    return false;
+  }
 };

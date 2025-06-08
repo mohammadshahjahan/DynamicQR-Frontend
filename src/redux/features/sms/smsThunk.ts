@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { API_BASE_URL } from "../../../constants/api";
 import toast from "react-hot-toast";
 
 export const smsThunk = createAsyncThunk("sms/fetchdata", async (offset:number)=> {

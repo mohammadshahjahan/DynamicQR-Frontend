@@ -34,7 +34,7 @@ const URL = () => {
     return <div className="text-center py-8">Loading URL QR Codes...</div>;
   }
 
-  if (paginatedError || paginatedData === null) {
+  else if (paginatedError || paginatedData === null) {
     return (
       <div className="text-center py-8 text-red-500">
         {paginatedData === null
@@ -50,7 +50,7 @@ const URL = () => {
       </div>
     );
   }
-  return (
+  else return (
     <div>
       <QRTable
         title="Recent QR Codes"
