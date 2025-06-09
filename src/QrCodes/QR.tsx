@@ -118,16 +118,6 @@ const QRDetailsCard = ({ details, qrID }: { details: any; qrID: number }) => {
               variant="subtitle2"
               sx={{ color: "#616161", fontWeight: 500 }}
             >
-              Count
-            </Typography>
-            <Typography sx={{ fontWeight: 500 }}>{details.count}</Typography>
-          </ResponsiveGridItem>
-
-          <ResponsiveGridItem size={{ xs: 12, sm: 6, md: 4 }}>
-            <Typography
-              variant="subtitle2"
-              sx={{ color: "#616161", fontWeight: 500 }}
-            >
               QR Type
             </Typography>
             <Chip
