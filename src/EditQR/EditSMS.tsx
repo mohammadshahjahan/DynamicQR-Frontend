@@ -98,7 +98,7 @@ const EditSMS = ({ qr_id }: { qr_id: number }) => {
                 },
               }}
             />
-            Edit URL QR Code
+            Edit SMS QR Code
           </Box>
         </Typography>
         <Typography
@@ -112,7 +112,8 @@ const EditSMS = ({ qr_id }: { qr_id: number }) => {
             },
           }}
         >
-          Edit a QR code that links to any website URL
+          Edit a QR code that can be scanned to send an SMS message. Enter the
+          country code, phone number, and message body to generate the QR code.
         </Typography>
       </Box>
 

@@ -8,9 +8,12 @@ interface EditQRProps {
   details: any;
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  qrID: number;
 }
 
-const EditQR: React.FC<EditQRProps> = ({ details, open, setOpen }) => {
+const EditQR: React.FC<EditQRProps> = ({ details, open, setOpen, qrID }) => {
+  console.log(details);
+
   const handleClose = () => {
     setOpen(false);
   };
@@ -23,11 +26,11 @@ const EditQR: React.FC<EditQRProps> = ({ details, open, setOpen }) => {
       >
         <>
           {details?.qr_type === "url" ? (
-            <EditUrl qr_id={details?.id} />
+            <EditUrl qr_id={qrID} />
           ) : details?.qr_type === "sms" ? (
-            <EditSMS qr_id={details?.id} />
+            <EditSMS qr_id={qrID} />
           ) : (
-            <EditEmail qr_id={details?.id} />
+            <EditEmail qr_id={qrID} />
           )}
         </>
       </Modal>

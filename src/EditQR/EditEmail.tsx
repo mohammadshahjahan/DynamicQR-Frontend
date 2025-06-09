@@ -92,7 +92,7 @@ const EditEmail = ({ qr_id }: { qr_id: number }) => {
                 },
               }}
             />
-            Edit URL QR Code
+            Edit Email QR Code
           </Box>
         </Typography>
         <Typography
@@ -106,7 +106,8 @@ const EditEmail = ({ qr_id }: { qr_id: number }) => {
             },
           }}
         >
-          Edit a QR code that links to any website URL
+          Edit a QR code that can be scanned to send an email. Enter the
+          destination email address.
         </Typography>
       </Box>
 

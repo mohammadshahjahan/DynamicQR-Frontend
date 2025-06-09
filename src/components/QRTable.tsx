@@ -128,14 +128,7 @@ const QRTable: React.FC<QRTableProps> = ({
     );
   }
 
-  const columns = [
-    "Name",
-    "Type",
-    "Created At",
-    "Updated At",
-    "Total Scans",
-    "Status",
-  ];
+  const columns = ["Name", "Type", "Created At", "Updated At", "Status"];
 
   return (
     <TableContainer
@@ -194,7 +187,6 @@ const QRTable: React.FC<QRTableProps> = ({
               <TableCell>{row?.qr_type}</TableCell>
               <TableCell>{formatDateIndian(row?.created_at)}</TableCell>
               <TableCell>{formatDateIndian(row?.updated_at)}</TableCell>
-              <TableCell>{row?.count}</TableCell>
               <TableCell>{row?.status ? "Active" : "Not Active"}</TableCell>
             </TableRow>
           ))}
