@@ -337,7 +337,7 @@ const QR = () => {
         </Alert>
       )}
 
-      {data.details && (
+      {!isLoading && data.details && (
         <QRDetailsCard details={data.details} qrID={qrIdNumber} />
       )}
 
